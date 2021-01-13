@@ -1,0 +1,241 @@
+SQL> SELECT DNI
+  2  FROM PROFESOR
+  3  WHERE CAR = '7'
+  4  ;
+
+       DNI                                                                      
+----------                                                                      
+      2222                                                                      
+      4444                                                                      
+      2020                                                                      
+
+SQL> SELECT DISTINCT P
+  2  FROM PROFESOR
+  3  WHERE CAR = 7;
+
+P                                                                               
+------------------------------------------------------------                    
+SOLEDAD                                                                         
+CARLOS                                                                          
+MARIA                                                                           
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR >= 7;
+
+A                                                                               
+--------------------------------------------------                              
+BASES DE DATOS                                                                  
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+INFORMATICA BASICA                                                              
+CALCULO                                                                         
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR > 7;
+
+A                                                                               
+--------------------------------------------------                              
+CALCULO                                                                         
+
+SQL> SELECT CAS
+  2  FROM ASIGNATURA
+  3  WHERE A = 'ALMACENES DE DATOS';
+
+       CAS                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR<>8;
+
+A                                                                               
+--------------------------------------------------                              
+BASES DE DATOS                                                                  
+INTELIGENCIA ARTIFICIAL                                                         
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+INFORMATICA BASICA                                                              
+ALGEBRA                                                                         
+OPTIMIZACION                                                                    
+GESTION DE RIESGOS                                                              
+ASTRONOMIA                                                                      
+ENSENANZA DE LA MATEMATICA                                                      
+ANALISIS COMPLEJO                                                               
+
+11 rows selected.
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE (CAS <> 8) AND (CAS <> 11);
+
+A                                                                               
+--------------------------------------------------                              
+BASES DE DATOS                                                                  
+INTELIGENCIA ARTIFICIAL                                                         
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+INFORMATICA BASICA                                                              
+ALGEBRA                                                                         
+CALCULO                                                                         
+GESTION DE RIESGOS                                                              
+ASTRONOMIA                                                                      
+ANALISIS COMPLEJO                                                               
+
+10 rows selected.
+
+SQL> SELECT CAS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI=3333;
+
+       CAS                                                                      
+----------                                                                      
+         2                                                                      
+         9                                                                      
+
+SQL> SELECT CD
+  2  FROM DEPARTAMENTO
+  3  WHERE D = 'ASTROFISICA';
+
+        CD                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> SELECT DNI
+  2  FROM PLAN_DOCENTE
+  3  WHERE FI = '01-SEP-09';
+
+       DNI                                                                      
+----------                                                                      
+      1010                                                                      
+      1111                                                                      
+      2222                                                                      
+      3030                                                                      
+      3333                                                                      
+      8888                                                                      
+
+6 rows selected.
+
+SQL> SELECT DISTINCT DNI
+  2  FROM PLAN_DOCENTE
+  3  WHERE FI < '01-JAN-09';
+
+       DNI                                                                      
+----------                                                                      
+      1010                                                                      
+      1111                                                                      
+      2020                                                                      
+      2222                                                                      
+      3333                                                                      
+      4444                                                                      
+      6666                                                                      
+
+7 rows selected.
+
+SQL> SELECT DISTINCT DNI
+  2  FROM PLAN_DOCENTE
+  3  WHERE FI < '01-JAN-09';
+
+       DNI                                                                      
+----------                                                                      
+      1010                                                                      
+      1111                                                                      
+      2020                                                                      
+      2222                                                                      
+      3333                                                                      
+      4444                                                                      
+      6666                                                                      
+
+7 rows selected.
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR IN (3, 5, 8);
+
+A                                                                               
+--------------------------------------------------                              
+CALCULO                                                                         
+ASTRONOMIA                                                                      
+ENSENANZA DE LA MATEMATICA                                                      
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAR NOT IN (3, 5, 8);
+
+A                                                                               
+--------------------------------------------------                              
+BASES DE DATOS                                                                  
+INTELIGENCIA ARTIFICIAL                                                         
+ALMACENES DE DATOS                                                              
+MINERIA DE DATOS                                                                
+INFORMATICA BASICA                                                              
+ALGEBRA                                                                         
+OPTIMIZACION                                                                    
+GESTION DE RIESGOS                                                              
+ANALISIS COMPLEJO                                                               
+
+9 rows selected.
+
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE DNI >= 3000 AND DNI <= 7000;
+
+P                                                                               
+------------------------------------------------------------                    
+JOSE MANUEL                                                                     
+PEDRO                                                                           
+MARIA                                                                           
+IVAN                                                                            
+CARMEN                                                                          
+
+SQL> SELECT P
+  2  FROM PROFESOR
+  3  WHERE NOT(DNI >= '3000' AND DNI <= '7000');
+
+P                                                                               
+------------------------------------------------------------                    
+JUAN                                                                            
+CARLOS                                                                          
+MARIO                                                                           
+FRANCISCO                                                                       
+ANGELA                                                                          
+DAVID                                                                           
+SOLEDAD                                                                         
+
+7 rows selected.
+
+SQL> SELECT CAS
+  2  FROM PLAN_DOCENTE
+  3  WHERE DNI = '1111' AND FF IS NULL;
+
+       CAS                                                                      
+----------                                                                      
+         8                                                                      
+
+SQL> SELECT A, SUM(CP+CT+CL)
+  2  FROM ASIGNATURA
+  3  GROUP BY A;
+
+A                                                  SUM(CP+CT+CL)                
+-------------------------------------------------- -------------                
+ALGEBRA                                                        6                
+BASES DE DATOS                                                 6                
+INFORMATICA BASICA                                             6                
+OPTIMIZACION                                                   6                
+CALCULO                                                        6                
+GESTION DE RIESGOS                                             6                
+ENSENANZA DE LA MATEMATICA                                     6                
+ANALISIS COMPLEJO                                            7.5                
+INTELIGENCIA ARTIFICIAL                                        6                
+MINERIA DE DATOS                                               3                
+ALMACENES DE DATOS                                             3                
+
+A                                                  SUM(CP+CT+CL)                
+-------------------------------------------------- -------------                
+ASTRONOMIA                                                     6                
+
+12 rows selected.
+
+SQL> SPOOL OFF

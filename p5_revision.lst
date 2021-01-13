@@ -1,0 +1,124 @@
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  NATURAL JOIN AREA
+  4  WHERE AR LIKE 'A%';
+
+A                                                                                                                                                                                   
+--------------------------------------------------                                                                                                                                  
+ALGEBRA                                                                                                                                                                             
+ANALISIS COMPLEJO                                                                                                                                                                   
+ASTRONOMIA                                                                                                                                                                          
+
+SQL> SELECT A, AR
+  2  FROM ASIGNATURA
+  3  NATURAL JOIN AREA
+  4  WHERE AR LIKE 'A%';
+
+A                                                  AR                                                                                                                               
+-------------------------------------------------- ------------------------------------------------------------                                                                     
+ALGEBRA                                            ALGEBRA                                                                                                                          
+ANALISIS COMPLEJO                                  ANALISIS MATEMATICO                                                                                                              
+ASTRONOMIA                                         ASTRONOMIA Y ASTROFISICA                                                                                                         
+
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  NATURAL JOIN AREA
+  4  WHERE AR LIKE '%A';
+
+A                                                                                                                                                                                   
+--------------------------------------------------                                                                                                                                  
+ALGEBRA                                                                                                                                                                             
+ASTRONOMIA                                                                                                                                                                          
+ENSENANZA DE LA MATEMATICA                                                                                                                                                          
+OPTIMIZACION                                                                                                                                                                        
+CALCULO                                                                                                                                                                             
+
+SQL> 
+SQL> SPOOL OFF
+SQL> spool
+currently spooling to p5_revision.lst
+SQL> SELECT A
+  2  FROM ASIGNATURA
+  3  WHERE CAS IN (SELECT CAS
+  4  FROM PLAN_DOCENTE
+  5  WHERE DNI IN (SELECT DNI
+  6  FROM PROFESOR
+  7  WHERE CAT LIKE 'CU'));
+
+A                                                                                                                                                                                   
+--------------------------------------------------                                                                                                                                  
+ALMACENES DE DATOS                                                                                                                                                                  
+OPTIMIZACION                                                                                                                                                                        
+
+SQL> SPOOL OFF
+SQL> select p from profesor where dni in (select dni from plan_docente where ff is not null and cas in (select cas from asignatura where t = 'GII' and t = 'MII'));
+
+no rows selected
+
+SQL> spool off
+SQL> select AR, A
+  2  from area natural join asignatura
+  3  order by AR desc;
+
+AR                                                           A                                                                                                                      
+------------------------------------------------------------ --------------------------------------------------                                                                     
+MATEMATICA APLICADA                                          CALCULO                                                                                                                
+LENGUAJES Y SISTEMAS INFORMATICOS                            BASES DE DATOS                                                                                                         
+LENGUAJES Y SISTEMAS INFORMATICOS                            ALMACENES DE DATOS                                                                                                     
+LENGUAJES Y SISTEMAS INFORMATICOS                            MINERIA DE DATOS                                                                                                       
+LENGUAJES Y SISTEMAS INFORMATICOS                            INFORMATICA BASICA                                                                                                     
+ESTADISTICA E INVESTIGACION OPERATIVA                        OPTIMIZACION                                                                                                           
+DIDACTICA DE LA MATEMATICA                                   ENSENANZA DE LA MATEMATICA                                                                                             
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL         GESTION DE RIESGOS                                                                                                     
+CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL         INTELIGENCIA ARTIFICIAL                                                                                                
+ASTRONOMIA Y ASTROFISICA                                     ASTRONOMIA                                                                                                             
+ANALISIS MATEMATICO                                          ANALISIS COMPLEJO                                                                                                      
+ALGEBRA                                                      ALGEBRA                                                                                                                
+
+12 rows selected.
+
+SQL> spool off
+SQL> SELECT D, AR
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA
+  3  ORDER BY D, AR ASC;
+
+D                                                            AR                                                                                                                     
+------------------------------------------------------------ ------------------------------------------------------------                                                           
+ANALISIS MATEMATICO                                          ANALISIS MATEMATICO                                                                                                    
+ANALISIS MATEMATICO                                          DIDACTICA DE LA MATEMATICA                                                                                             
+ANALISIS MATEMATICO                                          MATEMATICA APLICADA                                                                                                    
+ASTROFISICA                                                  ASTRONOMIA Y ASTROFISICA                                                                                               
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL                                                                   
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           ESTADISTICA E INVESTIGACION OPERATIVA                                                                                  
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           LENGUAJES Y SISTEMAS INFORMATICOS                                                                                      
+MATEMATICA FUNDAMENTAL                                       ALGEBRA                                                                                                                
+
+8 rows selected.
+
+SQL> spool off
+SQL> SELECT D, P
+  2  FROM DEPARTAMENTO
+  3  NATURAL JOIN AREA
+  4  NATURAL JOIN PROFESOR
+  5  ORDER BY D, P ASC;
+
+D                                                            P                                                                                                                      
+------------------------------------------------------------ ------------------------------------------------------------                                                           
+ANALISIS MATEMATICO                                          ANGELA                                                                                                                 
+ANALISIS MATEMATICO                                          CARINA                                                                                                                 
+ANALISIS MATEMATICO                                          FRANCISCO                                                                                                              
+ANALISIS MATEMATICO                                          MARIO                                                                                                                  
+ASTROFISICA                                                  CARMEN                                                                                                                 
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARLOS                                                                                                                 
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           CARMELO                                                                                                                
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           DAVID                                                                                                                  
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JOSE MANUEL                                                                                                            
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           JUAN                                                                                                                   
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           MARIA                                                                                                                  
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           PEDRO                                                                                                                  
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION           SOLEDAD                                                                                                                
+MATEMATICA FUNDAMENTAL                                       IVAN                                                                                                                   
+
+14 rows selected.
+
+SQL> SPOOL OFF
